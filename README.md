@@ -24,7 +24,7 @@ This file provides comprehensive documentation for the SecureChat system, includ
 - `SETUP.md`: Detailed setup guide with prerequisites
 - `PROJECT_STRUCTURE.md`: Project structure documentation
 - `schema.sql`: Database schema definition
-- `tests/manual/NOTES.md`: Testing checklist and procedures
+- `tests/manual/README.md`: Manual testing documentation and procedures
 - `.env.example`: Configuration template
 - `requirements.txt`: Python dependencies
 
@@ -100,7 +100,7 @@ securechat-cryptography/
 │  └─ gen_cert.py            # Issue client/server certs signed by Root CA
 ├─ tests/
 │  └─ manual/
-│     └─ NOTES.md            # Manual testing + Wireshark evidence checklist
+│     └─ README.md           # Manual testing + Wireshark evidence checklist
 ├─ certs/                    # Local certs/keys (gitignored)
 ├─ transcripts/              # Session logs (gitignored)
 ├─ .env.example              # Sample configuration (no secrets)
@@ -571,8 +571,10 @@ When submitting on Google Classroom (GCR):
 1. **GitHub Repository ZIP** - Complete repository with all commits
 2. **MySQL Schema Dump** - `schema.sql` with table structure and sample records
 3. **README.md** - This file (with your GitHub repo link)
-4. **Report** - `RollNumber-FullName-Report-A02.docx`
-5. **Test Report** - `RollNumber-FullName-TestReport-A02.docx`
+4. **Report** - `22I-0891-Umer-Farooq-Report-A02.pdf` (in `docs/` folder)
+5. **Test Report** - `22I-0891-Umer-Farooq-TestReport-A02.pdf` (in `docs/` folder)
+
+**Note:** Reports are available in both PDF format (in `docs/` folder) and LaTeX source format (`docs/report.tex` and `docs/test_report.tex`). PDFs can be converted to DOCX format if required for submission.
 
 ## 📚 References
 

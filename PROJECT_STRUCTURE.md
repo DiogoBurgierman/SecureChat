@@ -61,7 +61,7 @@ securechat-cryptography/
 │
 ├── tests/                        # Testing and evidence
 │   └── manual/
-│       └── NOTES.md             # Manual testing checklist
+│       └── README.md            # Manual testing documentation
 │
 ├── certs/                        # Certificate storage (gitignored)
 │   └── .keep                    # Directory placeholder
@@ -210,10 +210,11 @@ securechat-cryptography/
 - Step-by-step instructions
 - Troubleshooting
 
-#### `tests/manual/NOTES.md`
-- Manual testing checklist
+#### `tests/manual/README.md`
+- Manual testing documentation
+- Script usage instructions
 - Evidence collection procedures
-- Test report template
+- Test report generation
 
 ## Directory Purposes
 

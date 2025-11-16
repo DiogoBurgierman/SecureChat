@@ -380,7 +380,7 @@ Before running tests, verify:
 After setup is complete:
 
 1. Read the main [README.md](README.md) for usage instructions
-2. Review [tests/manual/NOTES.md](tests/manual/NOTES.md) for testing procedures
+2. Review [tests/manual/README.md](tests/manual/README.md) for testing procedures
 3. Start implementing the protocol according to the assignment specification
 
 ## Getting Help

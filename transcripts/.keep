@@ -42,7 +42,7 @@
 #     - app/client.py: Creates client-side transcripts
 #     - app/server.py: Creates server-side transcripts
 #     - .gitignore: This directory is gitignored
-#     - tests/manual/NOTES.md: Referenced in testing procedures
+#     - tests/manual/README.md: Referenced in testing procedures
 #
 # Result:
 #     - Provides storage for session transcripts
