@@ -78,6 +78,12 @@ from typing import Optional, Tuple
 
 from cryptography.hazmat.primitives.asymmetric import rsa
 
+import sys
+
+# Add project root to Python path
+project_root = Path(__file__).parent.parent.parent
+sys.path.insert(0, str(project_root))
+
 from app.common.protocol import SessionReceipt
 from app.common.utils import b64d, sha256_hex
 from app.crypto.pki import get_certificate_fingerprint, load_certificate_from_file

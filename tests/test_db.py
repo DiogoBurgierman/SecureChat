@@ -54,17 +54,24 @@ class TestDatabase(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         """Set up test database."""
-        # Use test database
-        os.environ["DB_NAME"] = "securechat_test"
+        # Use existing securechat database (tests clean up after themselves)
+        # This avoids requiring CREATE DATABASE permission
+        os.environ["DB_NAME"] = os.getenv("DB_NAME", "securechat")
         os.environ["DB_USER"] = os.getenv("DB_USER", "scuser")
         os.environ["DB_PASSWORD"] = os.getenv("DB_PASSWORD", "scpass")
         
-        # Initialize test database
+        # Verify database connection and table exists
         try:
-            initialize_database()
-            print("\n[SETUP] Test database initialized")
+            conn = get_db_connection()
+            with conn.cursor() as cursor:
+                cursor.execute("SHOW TABLES LIKE 'users'")
+                if not cursor.fetchone():
+                    # Table doesn't exist, try to create it
+                    initialize_database()
+            conn.close()
+            print("\n[SETUP] Test database connection verified")
         except Exception as e:
-            print(f"\n[WARNING] Could not initialize test database: {e}")
+            print(f"\n[WARNING] Could not connect to database: {e}")
             print("  Database tests will be skipped")
             cls.skip_all = True
         else:

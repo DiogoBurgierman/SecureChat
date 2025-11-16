@@ -70,9 +70,15 @@ Result:
 import argparse
 import os
 import secrets
+import sys
+from pathlib import Path
 from typing import Optional, Tuple
 
 import pymysql
+
+# Add project root to Python path
+project_root = Path(__file__).parent.parent.parent
+sys.path.insert(0, str(project_root))
 
 from app.common.utils import sha256_hex
 from config import get_config

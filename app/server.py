@@ -72,7 +72,13 @@ import json
 import os
 import secrets
 import socket
+import sys
+from pathlib import Path
 from typing import Optional
+
+# Add project root to Python path
+project_root = Path(__file__).parent.parent
+sys.path.insert(0, str(project_root))
 
 from config import get_config
 

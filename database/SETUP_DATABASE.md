@@ -47,6 +47,18 @@ sudo systemctl start mysql
 sudo systemctl enable mysql
 ```
 
+#### Kali Linux
+**Note:** Kali Linux uses MariaDB instead of MySQL. MariaDB is fully compatible with MySQL.
+
+```bash
+sudo apt-get update
+sudo apt-get install mariadb-server
+sudo systemctl start mariadb
+sudo systemctl enable mariadb
+```
+
+**Important:** On Kali Linux, use `mariadb` instead of `mysql` for systemctl commands, but the `mysql` command-line client still works the same way.
+
 #### macOS (using Homebrew)
 ```bash
 brew install mysql
@@ -60,15 +72,18 @@ brew services start mysql
 4. Follow the installation wizard
 5. Note the root password you set
 
-### Step 2: Verify MySQL Installation
+### Step 2: Verify MySQL/MariaDB Installation
 
 ```bash
 mysql --version
-# Should show: mysql Ver 8.0.x or similar
+# Should show: mysql Ver 8.0.x or mariadb Ver 10.x or similar
 ```
 
-### Step 3: Secure MySQL Installation (Recommended)
+**Note:** On Kali Linux with MariaDB, you may see `mariadb` in the version string, but the `mysql` command still works.
 
+### Step 3: Secure MySQL/MariaDB Installation (Recommended)
+
+#### Ubuntu/Debian/Windows:
 ```bash
 sudo mysql_secure_installation
 ```
@@ -79,6 +94,47 @@ Follow the prompts:
 - Disallow root login remotely: **Yes** (unless needed)
 - Remove test database: **Yes**
 - Reload privilege tables: **Yes**
+
+#### Kali Linux (MariaDB) - Manual Method:
+
+If `mysql_secure_installation` is not available, secure MariaDB manually:
+
+```bash
+# Login to MariaDB as root (no password needed initially)
+sudo mysql -u root
+```
+
+Then run these SQL commands:
+
+```sql
+-- Set root password (replace 'your_strong_password' with your password)
+ALTER USER 'root'@'localhost' IDENTIFIED BY 'your_strong_password';
+
+-- Remove anonymous users
+DELETE FROM mysql.user WHERE User='';
+
+-- Disallow root login remotely
+DELETE FROM mysql.user WHERE User='root' AND Host NOT IN ('localhost', '127.0.0.1', '::1');
+
+-- Remove test database
+DROP DATABASE IF EXISTS test;
+DELETE FROM mysql.db WHERE Db='test' OR Db='test\\_%';
+
+-- Reload privilege tables
+FLUSH PRIVILEGES;
+
+-- Exit
+exit;
+```
+
+**Alternative:** Try finding the secure installation script:
+```bash
+# Check if mariadb-secure-installation exists
+which mariadb-secure-installation
+
+# Or try:
+sudo apt-get install mariadb-server-10.11  # This might include the script
+```
 
 ---
 
@@ -123,6 +179,13 @@ mysql -u root -p < database/create_user.sql
 
 ```bash
 # From SecureChat directory
+mysql -u scuser -p < database/init_database.sql
+```
+
+**Alternative: Using schema.sql from root**
+
+```bash
+# From SecureChat directory
 mysql -u scuser -p < schema.sql
 ```
 
@@ -153,8 +216,8 @@ CREATE DATABASE IF NOT EXISTS securechat
 -- Use database
 USE securechat;
 
--- Create users table (see schema.sql for full SQL)
-SOURCE schema.sql;
+-- Create users table (see database/init_database.sql for full SQL)
+SOURCE database/init_database.sql;
 ```
 
 ### Step 3: Verify Database Creation
@@ -204,7 +267,12 @@ DB_PASSWORD=scpass
 
 ```bash
 # Test connection using Python
-python -c "from app.storage.db import get_db_connection; conn = get_db_connection(); print('Connection successful!'); conn.close()"
+python -c "from app.storage.db import get_db_connection; conn = get_db_connection(); print('Connection successful'); conn.close()"
+```
+
+**Note:** If you get `bash: !': event not found`, use this alternative:
+```bash
+python -c 'from app.storage.db import get_db_connection; conn = get_db_connection(); print("Connection successful"); conn.close()'
 ```
 
 ---
@@ -320,7 +388,10 @@ INSERT INTO users (email, username, salt, pwd_hash) VALUES
    CREATE DATABASE securechat;
    ```
 
-2. Or run schema.sql again
+2. Or run the initialization script again:
+   ```bash
+   mysql -u scuser -p < database/init_database.sql
+   ```
 
 ### Problem: "Table 'users' already exists"
 
