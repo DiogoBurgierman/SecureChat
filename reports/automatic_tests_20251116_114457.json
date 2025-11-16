@@ -1,0 +1,37 @@
+{
+  "report_type": "automatic_tests",
+  "timestamp": "2025-11-16T11:44:57.892747",
+  "test_date": "2025-11-16 11:44:57",
+  "summary": {
+    "total_tests": 88,
+    "passed": 88,
+    "failed": 0,
+    "errors": 0,
+    "skipped": 0,
+    "success_rate": 100.0,
+    "overall_status": "PASS"
+  },
+  "test_modules": [
+    "test_protocol.py - Protocol message models",
+    "test_cert_gen.py - Certificate generation",
+    "test_db.py - Database operations",
+    "test_transcript.py - Transcript management",
+    "test_server_client.py - Server/Client integration",
+    "test_utils.py - Utility functions",
+    "test_aes.py - AES encryption",
+    "test_sign.py - RSA signatures",
+    "test_dh.py - Diffie-Hellman key exchange",
+    "test_pki.py - PKI certificate validation",
+    "test_integration.py - Crypto integration",
+    "test_config.py - Configuration system"
+  ],
+  "test_details": {
+    "passed_tests": [],
+    "failed_tests": [],
+    "error_tests": [],
+    "skipped_tests": [],
+    "passed_count": 88
+  },
+  "failures": [],
+  "errors": []
+}

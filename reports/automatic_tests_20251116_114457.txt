@@ -1,0 +1,39 @@
+================================================================================
+TEST REPORT - AUTOMATIC TEST SUITE
+================================================================================
+
+Report Type: automatic_tests
+Test Date: 2025-11-16 11:44:57
+
+--------------------------------------------------------------------------------
+SUMMARY
+--------------------------------------------------------------------------------
+
+Total Tests Run:     88
+Passed:              88
+Failed:              0
+Errors:              0
+Skipped:             0
+Success Rate:        100.0%
+Overall Status:      PASS
+
+--------------------------------------------------------------------------------
+TEST MODULES
+--------------------------------------------------------------------------------
+
+  - test_protocol.py - Protocol message models
+  - test_cert_gen.py - Certificate generation
+  - test_db.py - Database operations
+  - test_transcript.py - Transcript management
+  - test_server_client.py - Server/Client integration
+  - test_utils.py - Utility functions
+  - test_aes.py - AES encryption
+  - test_sign.py - RSA signatures
+  - test_dh.py - Diffie-Hellman key exchange
+  - test_pki.py - PKI certificate validation
+  - test_integration.py - Crypto integration
+  - test_config.py - Configuration system
+
+================================================================================
+END OF REPORT
+================================================================================

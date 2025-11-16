@@ -1,0 +1,25 @@
+{
+  "report_type": "manual_test",
+  "test_name": "manual_tests_summary_windows",
+  "timestamp": "2025-11-16T21:44:17.791885",
+  "test_date": "2025-11-16 21:44:17",
+  "results": {
+    "test_name": "Manual Test Suite Summary (Windows)",
+    "tests_run": [
+      "invalid_certs",
+      "tampering",
+      "replay"
+    ],
+    "results": {
+      "invalid_certs": true,
+      "tampering": true,
+      "replay": false
+    },
+    "status": "COMPLETED",
+    "notes": [
+      "Some tests require manual code modification",
+      "See individual test guides for detailed instructions",
+      "Take screenshots of all error messages (BAD_CERT, SIG_FAIL, REPLAY)"
+    ]
+  }
+}

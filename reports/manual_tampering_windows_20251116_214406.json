@@ -1,0 +1,18 @@
+{
+  "report_type": "manual_test",
+  "test_name": "tampering_windows",
+  "timestamp": "2025-11-16T21:44:06.029731",
+  "test_date": "2025-11-16 21:44:06",
+  "results": {
+    "test_name": "Message Tampering Test (Windows)",
+    "test_type": "manual",
+    "guide_location": "D:\\University\\Uni\\Semester 7\\Information Security (InfoSec)\\Assignments\\Assignment 2\\SecureChat\\tests\\manual\\tampering_tests\\outputs\\TAMPERING_TEST_GUIDE.md",
+    "expected_error": "SIG_FAIL",
+    "status": "GUIDE_CREATED",
+    "notes": [
+      "This test requires manual code modification",
+      "See TAMPERING_TEST_GUIDE.md for detailed instructions",
+      "Expected error: SIG_FAIL - Signature verification failed"
+    ]
+  }
+}

@@ -1,0 +1,29 @@
+================================================================================
+TEST REPORT - MANUAL TEST: AUTOMATED_MANUAL_TESTS
+================================================================================
+
+Test Name: automated_manual_tests
+Test Date: 2025-11-16 21:48:42
+
+--------------------------------------------------------------------------------
+TEST RESULTS
+--------------------------------------------------------------------------------
+
+test_name: Automated Manual Tests
+
+tests_run:
+  - normal_session
+
+results:
+  normal_session: {'status': 'FAILED', 'returncode': 1, 'stdout': '============================================================\nNormal Chat Session Test\n============================================================\n\n[INFO] Starting server...\n[ERROR] Test failed: Server failed to start\n', 'stderr': 'Traceback (most recent call last):\n  File "D:\\University\\Uni\\Semester 7\\Information Security (InfoSec)\\Assignments\\Assignment 2\\SecureChat\\tests\\manual\\run_normal_session.py", line 63, in run_normal_session\n    server_process = start_server()\n  File "D:\\University\\Uni\\Semester 7\\Information Security (InfoSec)\\Assignments\\Assignment 2\\SecureChat\\tests\\manual\\run_normal_session.py", line 48, in start_server\n    raise RuntimeError("Server failed to start")\nRuntimeError: Server failed to start\n'}
+
+status: COMPLETED
+
+notes:
+  - Some tests (tampering, replay, invalid certs) require manual code modification
+  - See individual test guides for manual testing procedures
+  - Normal session test generates transcripts automatically
+
+================================================================================
+END OF REPORT
+================================================================================

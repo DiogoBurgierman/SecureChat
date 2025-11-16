@@ -1,0 +1,29 @@
+================================================================================
+TEST REPORT - MANUAL TEST: REPLAY_WINDOWS
+================================================================================
+
+Test Name: replay_windows
+Test Date: 2025-11-16 21:44:32
+
+--------------------------------------------------------------------------------
+TEST RESULTS
+--------------------------------------------------------------------------------
+
+test_name: Replay Attack Test (Windows)
+
+test_type: manual
+
+guide_location: D:\University\Uni\Semester 7\Information Security (InfoSec)\Assignments\Assignment 2\SecureChat\tests\manual\replay_tests\outputs\REPLAY_TEST_GUIDE.md
+
+expected_error: REPLAY
+
+status: GUIDE_CREATED
+
+notes:
+  - This test requires manual code modification
+  - See REPLAY_TEST_GUIDE.md for detailed instructions
+  - Expected error: REPLAY - Sequence number already used
+
+================================================================================
+END OF REPORT
+================================================================================
