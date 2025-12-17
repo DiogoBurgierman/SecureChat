@@ -4,10 +4,10 @@ Diffie-Hellman clássico + ML-KEM (liboqs)
 
 Este teste simula duas partes (Alice e Bob) e verifica:
 - Igualdade da chave de sessão derivada
-- Funcionamento da cifragem AES com a chave híbrida
+- Funcionamento da cifragem AES-128 com a chave híbrida
 """
 
-from app.crypto.dh import (
+from .dh import (
     generate_dh_private_key,
     serialize_dh_public_key,
     generate_mlkem_keypair,
@@ -16,7 +16,7 @@ from app.crypto.dh import (
     derive_hybrid_session_key,
 )
 
-from app.crypto.aes import encrypt_message, decrypt_message
+from .aes import encrypt_aes128, decrypt_aes128
 
 
 def test_hybrid_handshake():
@@ -26,7 +26,9 @@ def test_hybrid_handshake():
     # Alice (cliente)
     # ======================================================
     alice_dh_priv = generate_dh_private_key()
-    alice_dh_pub = serialize_dh_public_key(alice_dh_priv.public_key())
+    alice_dh_pub = serialize_dh_public_key(
+        alice_dh_priv.public_key()
+    )
 
     alice_mlkem_pk, alice_mlkem_sk = generate_mlkem_keypair()
 
@@ -34,19 +36,24 @@ def test_hybrid_handshake():
     # Bob (servidor)
     # ======================================================
     bob_dh_priv = generate_dh_private_key()
-    bob_dh_pub = serialize_dh_public_key(bob_dh_priv.public_key())
+    bob_dh_pub = serialize_dh_public_key(
+        bob_dh_priv.public_key()
+    )
 
-    # Bob encapsula usando a chave ML-KEM da Alice
-    mlkem_ct, bob_mlkem_shared = mlkem_encapsulate(alice_mlkem_pk)
+    # ======================================================
+    # ML-KEM: encapsulamento / decapsulamento
+    # ======================================================
+    mlkem_ct, bob_mlkem_shared = mlkem_encapsulate(
+        alice_mlkem_pk
+    )
 
-    # Alice decapsula
     alice_mlkem_shared = mlkem_decapsulate(
         alice_mlkem_sk,
         mlkem_ct,
     )
 
     # ======================================================
-    # Derivação das chaves híbridas
+    # Derivação das chaves híbridas (DH + ML-KEM)
     # ======================================================
     alice_session_key = derive_hybrid_session_key(
         alice_dh_priv,
@@ -64,22 +71,37 @@ def test_hybrid_handshake():
     print("[TEST] Chave Bob:  ", bob_session_key.hex())
 
     # ======================================================
-    # Verificação 1: igualdade das chaves
+    # Verificação 1: chaves devem coincidir
     # ======================================================
-    assert alice_session_key == bob_session_key, \
+    assert alice_session_key == bob_session_key, (
         "ERRO: chaves de sessão não coincidem"
+    )
 
     print("[OK] Chaves de sessão coincidem")
 
     # ======================================================
-    # Verificação 2: AES funciona com chave híbrida
+    # Verificação 2: AES-128 usando chave híbrida
     # ======================================================
     mensagem = "Criptografia híbrida pós-quântica funcionando!"
-    ciphertext = encrypt_message(alice_session_key, mensagem)
-    plaintext = decrypt_message(bob_session_key, ciphertext)
+    mensagem_bytes = mensagem.encode("utf-8")
 
-    assert plaintext == mensagem, \
+    # AES-128 → 16 bytes da chave híbrida
+    aes_key_alice = alice_session_key[:16]
+    aes_key_bob = bob_session_key[:16]
+
+    ciphertext = encrypt_aes128(
+        mensagem_bytes,
+        aes_key_alice,
+    )
+
+    plaintext = decrypt_aes128(
+        ciphertext,
+        aes_key_bob,
+    )
+
+    assert plaintext.decode("utf-8") == mensagem, (
         "ERRO: falha na cifragem AES com chave híbrida"
+    )
 
     print("[OK] AES funcionou corretamente")
     print("[TEST] Teste concluído com sucesso 🎉")
