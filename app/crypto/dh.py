@@ -1,3 +1,5 @@
+#Implementação híbrida com algorítimo pós quântico desenvolvida por Diogo Burgierman, Lucas de Lucas e Andre Hutzler
+
 # =========================
 # IMPORTS PADRÃO
 # =========================
