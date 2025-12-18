@@ -10,7 +10,7 @@
 - **Name:** Umer Farooq
 - **Roll No:** 22I-0891
 - **Section:** CS-7D
-- **Instructor:** Urooj Ghani
+- **Instructor:** Urooj Ghani, Lucas de Luccas e André Hutlzer
 
 ---
 
